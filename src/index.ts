@@ -1,1 +1,1 @@
-module.exports = () => 'Test now pr deploy';
+module.exports = () => Date.now().toString();
