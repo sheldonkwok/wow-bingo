@@ -1,1 +1,1 @@
-module.exports = () => 'ts';
+module.exports = () => 'Test new changes';
