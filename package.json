@@ -1,0 +1,23 @@
+{
+  "name": "wow-bingo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "micro",
+    "deploy": "now --public"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.7.1",
+    "micro": "^9.3.3",
+    "typescript": "^3.0.1"
+  },
+  "now": {
+    "engines": {
+      "node": "10.x.x"
+    }
+  }
+}
