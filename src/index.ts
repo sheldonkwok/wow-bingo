@@ -1,1 +1,1 @@
-module.exports = () => 'Test new changes';
+module.exports = () => 'Test now pr deploy';
