@@ -27,4 +27,6 @@ RUN apk add --update --no-cache imagemagick msttcorefonts-installer && \
 COPY --from=build /opt/app/build/app ./
 COPY --from=build /opt/app/dist dist
 
+COPY config.yml config.yml
+
 ENTRYPOINT ["./app"]
