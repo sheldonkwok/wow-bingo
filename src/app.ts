@@ -21,17 +21,18 @@ function createBoardProcess(): cp.ChildProcess {
 }
 
 async function main(_req: http.IncomingMessage, res: http.ServerResponse) {
-  res.setHeader('Content-Type', 'image/png');
-
   const child = createBoardProcess();
 
   child.once('error', () => micro.send(res, 500, 'Error creating bingo card'));
+
   child.once('exit', code => {
-    if (code !== 0) micro.send(res, 500, 'Error creating bingo card');
+    if (code !== 0) return micro.send(res, 500, 'Error creating bingo card');
+
+    res.setHeader('Content-Type', 'image/png');
+    return micro.send(res, 200, child.stdout);
   });
 
   child.stderr.on('data', err => console.log(err.toString()));
-  micro.send(res, 200, child.stdout);
 }
 
 const server = micro.default(main);

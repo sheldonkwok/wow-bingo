@@ -1,8 +1,10 @@
-FROM node:10.9-alpine as build
+# build
+FROM node:11.9-alpine as build
 
 WORKDIR /opt/app
 
-RUN apk add --update --no-cache imagemagick msttcorefonts-installer && \
+RUN apk add --update --no-cache imagemagick \
+                                msttcorefonts-installer && \
     update-ms-fonts && \
     fc-cache -f
 
@@ -13,16 +15,17 @@ RUN npm install && \
 COPY src tsconfig.json ./
 RUN npm run build
 
-COPY . .
+COPY config.yml config.yml
+COPY bin bin
 RUN ./bin/build-text-img
 
-FROM alpine:3.8
+# run
+FROM alpine:3.9
+
+COPY --from=build /usr/share/fonts /usr/share/fonts
+RUN apk add --update --no-cache libstdc++ imagemagick
 
 WORKDIR /opt/app
-
-RUN apk add --update --no-cache imagemagick msttcorefonts-installer && \
-    update-ms-fonts && \
-    fc-cache -f
 
 COPY --from=build /opt/app/build/app ./
 COPY --from=build /opt/app/dist dist
