@@ -15,8 +15,9 @@ RUN npm install && \
 COPY src tsconfig.json ./
 RUN npm run build
 
-COPY config.yml config.yml
 COPY bin bin
+COPY config.yml config.yml
+
 RUN ./bin/build-text-img
 
 # run
