@@ -1,5 +1,5 @@
 # build
-FROM node:11.9-alpine as build
+FROM node:12.14-alpine3.11 as build
 
 WORKDIR /opt/app
 
@@ -15,12 +15,13 @@ RUN npm install && \
 COPY src tsconfig.json ./
 RUN npm run build
 
-COPY config.yml config.yml
 COPY bin bin
+COPY config.yml config.yml
+
 RUN ./bin/build-text-img
 
 # run
-FROM alpine:3.9
+FROM alpine:3.11
 
 COPY --from=build /usr/share/fonts /usr/share/fonts
 RUN apk add --update --no-cache libstdc++ imagemagick
