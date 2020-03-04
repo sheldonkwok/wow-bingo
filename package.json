@@ -17,7 +17,8 @@
     "@types/micro": "^7.3.1",
     "@types/mz": "0.0.32",
     "@types/node": "^10.7.1",
-    "pkg": "^4.3.4",
+    "pkg": "^4.4.4",
+    "prettier": "~1.19.1",
     "typescript": "^3.0.1"
   },
   "dependencies": {
@@ -27,5 +28,10 @@
     "lodash": "^4.17.15",
     "micro": "^9.3.3",
     "mz": "^2.7.0"
+  },
+  "prettier": {
+    "printWidth": 110,
+    "trailingComma": "all",
+    "singleQuote": true
   }
 }
