@@ -5,7 +5,7 @@ import * as cp from 'child_process';
 import * as micro from 'micro';
 import * as lodash from 'lodash';
 
-const { captions } = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));
+const { captions } = yaml.safeLoad(fs.readFileSync('./config.yaml', 'utf8'));
 
 const TOTAL_SQUARES = 25;
 const FREE_SQUARE = 12;

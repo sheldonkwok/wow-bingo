@@ -16,7 +16,7 @@ COPY src tsconfig.json ./
 RUN npm run build
 
 COPY bin bin
-COPY config.yml config.yml
+COPY config.yaml config.yaml
 
 RUN ./bin/build-text-img
 
@@ -31,6 +31,6 @@ WORKDIR /opt/app
 COPY --from=build /opt/app/build/app ./
 COPY --from=build /opt/app/dist dist
 
-COPY config.yml config.yml
+COPY config.yaml config.yaml
 
 ENTRYPOINT ["./app"]

@@ -28,7 +28,7 @@ async function createImg(filename: string, caption: string): Promise<void> {
 }
 
 async function main(): Promise<void> {
-  const { captions } = yaml.safeLoad(await fs.readFile('config.yml', 'utf8')) as Config;
+  const { captions } = yaml.safeLoad(await fs.readFile('config.yaml', 'utf8')) as Config;
 
   await cp.execFile('mkdir', ['-p', 'dist']);
   await bluebird.map(captions, (caption, i) => createImg(`dist/${i}.png`, caption), { concurrency: 50 });
