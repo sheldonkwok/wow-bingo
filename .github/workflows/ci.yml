@@ -21,7 +21,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t sheldonkwok/wow-bingo .
       - name: Dockerhub login
-        run: docker login --username sheldonkwok --password $DOCKERHUB_PASSWORD
+        run: echo $DOCKERHUB_PASSWORD | docker login --username sheldonkwok --password-stdin
         env:
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Push Docker image
