@@ -4,11 +4,10 @@
   "description": "",
   "main": "lib/app.js",
   "scripts": {
-    "build": "npm run transpile && pkg --targets node10-alpine-x64 --out-path build lib/app.js",
+    "build": "npm run transpile && pkg --targets node12-alpine-x64 --out-path build lib/app.js",
     "lint": "prettier -c src/**/* config.yaml",
     "transpile": "tsc",
-    "start": "npm run transpile && node lib/app.js",
-    "cache-pkg": "echo 'console.log(\"hi\")' > /tmp/cache.js && pkg --targets node10-alpine-x64 --out-path /tmp /tmp/cache.js"
+    "start": "npm run transpile && node lib/app.js"
   },
   "author": "",
   "license": "MIT",

@@ -9,8 +9,7 @@ RUN apk add --update --no-cache imagemagick \
     fc-cache -f
 
 COPY package.json package-lock.json ./
-RUN npm ci && \
-    npm run cache-pkg
+RUN npm ci
 
 COPY src tsconfig.json ./
 RUN npm run build
