@@ -12,9 +12,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+
       - name: Install dependencies
         run: npm ci
       - name: Lint
         run: npm run lint
+
       - name: Build Docker image
-        run: docker build -t sheldonkwok/discobot .
+        run: docker build -t sheldonkwok/wow-bingo .
+      - name: Dockerhub login
+        run: docker login --username sheldonkwok --password $DOCKERHUB_PASSWORD
+        env:
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Push Docker image
+        run: docker push sheldonkwok/wow-bingo
