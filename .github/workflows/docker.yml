@@ -1,6 +1,9 @@
-name: CI
+name: Docker Image
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -8,15 +11,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-
-      - name: Install dependencies
-        run: npm ci
-      - name: Lint
-        run: npm run lint
 
       - name: Build Docker image
         run: docker build -t sheldonkwok/wow-bingo .
