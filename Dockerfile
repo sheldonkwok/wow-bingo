@@ -9,14 +9,13 @@ RUN apk add --update --no-cache imagemagick \
     fc-cache -f
 
 COPY package.json package-lock.json ./
-RUN npm install && \
-    npm run cache-pkg
+RUN npm ci
 
 COPY src tsconfig.json ./
 RUN npm run build
 
 COPY bin bin
-COPY config.yml config.yml
+COPY config.yaml config.yaml
 
 RUN ./bin/build-text-img
 
@@ -31,6 +30,6 @@ WORKDIR /opt/app
 COPY --from=build /opt/app/build/app ./
 COPY --from=build /opt/app/dist dist
 
-COPY config.yml config.yml
+COPY config.yaml config.yaml
 
 ENTRYPOINT ["./app"]

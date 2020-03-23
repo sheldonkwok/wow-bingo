@@ -1,0 +1,22 @@
+name: Docker Image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t sheldonkwok/wow-bingo .
+      - name: Dockerhub login
+        run: echo $DOCKERHUB_PASSWORD | docker login --username sheldonkwok --password-stdin
+        env:
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Push Docker image
+        run: docker push sheldonkwok/wow-bingo
