@@ -23,6 +23,9 @@ function createBoardProcess(): cp.ChildProcess {
 async function main(_req: http.IncomingMessage, res: http.ServerResponse) {
   const child = createBoardProcess();
 
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+
   child.once('error', () => micro.send(res, 500, 'Error creating bingo card'));
 
   child.once('exit', code => {
